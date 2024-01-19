@@ -8,9 +8,12 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "classpath:feature",
         glue = "tek.bdd.steps",
-        tags = "@US_1",
+        tags = "@US_2",
         dryRun = false,
         monochrome = true,
-        snippets = CucumberOptions.SnippetType.CAMELCASE)
+        snippets = CucumberOptions.SnippetType.CAMELCASE,
+        plugin = {
+                "html:target/report/report.html"
+        })
 public class TestRunner {
 }

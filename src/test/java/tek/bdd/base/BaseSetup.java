@@ -11,10 +11,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.TreeMap;
 
 public class BaseSetup {
     private static WebDriver driver;
+
+    public static Map<String, String> recorder = new HashMap<>();
     public WebDriver getDriver() {
         return driver;
     }

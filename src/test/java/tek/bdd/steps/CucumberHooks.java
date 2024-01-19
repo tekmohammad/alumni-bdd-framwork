@@ -13,6 +13,8 @@ public class CucumberHooks extends BaseSetup {
 
     @After
     public void cleanUpTests() {
+        //Clear Out recorder after each test
+        recorder.clear();
         closeBrowser();
     }
 }
