@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import tek.bdd.browsers.ChromeBrowser;
+import tek.bdd.browsers.EdgeBrowser;
+import tek.bdd.browsers.FirefoxBrowser;
+import tek.bdd.browsers.IBrowser;
 import tek.bdd.exception.FrameworkSetupException;
 import tek.bdd.utility.Constants;
 
@@ -54,19 +58,20 @@ public class BaseSetup {
     public void initializeFramework() {
         //browser type
         //url for environment.
-        String browser = getProperty("browser_type");
-
+        String browser = getProperty("browser.type");
+        boolean isHeadless = Boolean.parseBoolean(getProperty("browser.isHeadless"));
+        IBrowser browserInterface;
         switch (browser.toLowerCase()) {
-            case "chrome" : driver = new ChromeDriver();
+            case "chrome" : browserInterface = new ChromeBrowser();
             break;
-            case "firefox": driver = new FirefoxDriver();
+            case "firefox": browserInterface = new FirefoxBrowser();
             break;
-            case "edge": driver = new EdgeDriver();
+            case "edge": browserInterface = new EdgeBrowser();
             break;
             default:
                throw new FrameworkSetupException("Wrong Browser type");
         }
-
+        driver = browserInterface.setupBrowser(isHeadless);
         //Selenium configuration.
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Constants.WAIT_IN_SECONDS));

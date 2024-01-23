@@ -2,6 +2,8 @@ package tek.bdd.utility;
 
 import io.cucumber.java.eo.Se;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -47,5 +49,10 @@ public class SeleniumUtilities extends BaseSetup {
 
     public List<WebElement> getElements(By locator) {
       return  getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+    }
+
+    public byte[] takeScreenShot() {
+        TakesScreenshot screenshot = (TakesScreenshot) getDriver();
+        return screenshot.getScreenshotAs(OutputType.BYTES);
     }
 }
