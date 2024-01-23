@@ -8,12 +8,13 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "classpath:feature",
         glue = "tek.bdd.steps",
-        tags = "@US_2",
+        tags = "@Regression",
         dryRun = false,
         monochrome = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         plugin = {
-                "html:target/report/report.html"
+                "html:target/report/report.html",
+                "json:target/jsonReports/jsonReport.json"
         })
-public class TestRunner {
+public class RegressionRunner {
 }

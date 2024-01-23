@@ -12,8 +12,9 @@ Feature: Create Account End to end Testing
       | gender           | <gender>           |
       | maritalStatus    | <maritalStatus>    |
       | employmentStatus | Software Developer |
-      | dob              | <dob>         |
+      | dob              | <dob>              |
     When click on "Create Account" button
+    Given wait 2 second
     Then validate section title to be "Sign up your account"
     Then validate created fullName and email
     When send text "random" to "Username" field

@@ -1,4 +1,4 @@
-@US_2
+@US_2 @Regression
 Feature: Testing CSR Primary Account Section
 
   Background: Login with CSR Credentials
