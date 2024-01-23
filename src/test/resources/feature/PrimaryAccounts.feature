@@ -3,7 +3,7 @@ Feature: Testing CSR Primary Account Section
 
   Background: Login with CSR Credentials
     When click on "Login" link
-    When send text "supervisor11" to "Username" field
+    When send text "supervisor" to "Username" field
     When send text "tek_supervisor" to "Password" field
     When click on "Sign In" button
 
