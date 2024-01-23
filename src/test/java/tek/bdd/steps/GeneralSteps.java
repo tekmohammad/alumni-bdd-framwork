@@ -33,6 +33,7 @@ public class GeneralSteps extends SeleniumUtilities {
     @When("click on {string} button")
     public void clickOnButton(String buttonText) throws InterruptedException {
         clickOnElement(GeneralElements.getButtonLocator(buttonText));
+        waitSecond(1000);
     }
 
     @When("send text {string} to {string} field")
