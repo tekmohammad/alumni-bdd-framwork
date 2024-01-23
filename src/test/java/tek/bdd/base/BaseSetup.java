@@ -24,10 +24,13 @@ public class BaseSetup {
     private static WebDriver driver;
 
     public static Map<String, String> recorder = new HashMap<>();
+
     public WebDriver getDriver() {
         return driver;
     }
+
     private final Properties properties;
+
     //Setup Framework
     //Setup browser
     //navigate to application.
@@ -39,7 +42,7 @@ public class BaseSetup {
         String configFilePath;
         if (targetEnvironment == null) {
             configFilePath = Constants.CONFIG_FILE_BASE_PATH + "dev_env.properties";
-        }else {
+        } else {
             configFilePath = Constants.CONFIG_FILE_BASE_PATH + targetEnvironment + "_env.properties";
         }
         System.out.println("Config file path ::::: " + configFilePath);
@@ -47,7 +50,7 @@ public class BaseSetup {
         try {
             FileInputStream inputStream = new FileInputStream(configFilePath);
             this.properties.load(inputStream);
-        }catch(IOException ex) {
+        } catch (IOException ex) {
             throw new FrameworkSetupException("Can not load property file with message " + ex.getMessage());
         }
     }
@@ -55,6 +58,7 @@ public class BaseSetup {
     public String getProperty(String key) {
         return this.properties.get(key).toString();
     }
+
     public void initializeFramework() {
         //browser type
         //url for environment.
@@ -62,14 +66,17 @@ public class BaseSetup {
         boolean isHeadless = Boolean.parseBoolean(getProperty("browser.isHeadless"));
         IBrowser browserInterface;
         switch (browser.toLowerCase()) {
-            case "chrome" : browserInterface = new ChromeBrowser();
-            break;
-            case "firefox": browserInterface = new FirefoxBrowser();
-            break;
-            case "edge": browserInterface = new EdgeBrowser();
-            break;
+            case "chrome":
+                browserInterface = new ChromeBrowser();
+                break;
+            case "firefox":
+                browserInterface = new FirefoxBrowser();
+                break;
+            case "edge":
+                browserInterface = new EdgeBrowser();
+                break;
             default:
-               throw new FrameworkSetupException("Wrong Browser type");
+                throw new FrameworkSetupException("Wrong Browser type");
         }
         driver = browserInterface.setupBrowser(isHeadless);
         //Selenium configuration.
@@ -84,7 +91,6 @@ public class BaseSetup {
             driver.quit();
         }
     }
-
 
 
 }
