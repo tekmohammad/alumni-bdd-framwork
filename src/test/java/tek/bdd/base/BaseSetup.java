@@ -42,7 +42,7 @@ public class BaseSetup {
         }else {
             configFilePath = Constants.CONFIG_FILE_BASE_PATH + targetEnvironment + "_env.properties";
         }
-
+        System.out.println("Config file path ::::: " + configFilePath);
         this.properties = new Properties();
         try {
             FileInputStream inputStream = new FileInputStream(configFilePath);
